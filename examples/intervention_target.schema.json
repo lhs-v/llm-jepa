@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Synthetic office-assistance intervention decision",
+  "type": "object",
+  "required": ["intervene", "instruction"],
+  "additionalProperties": false,
+  "properties": {
+    "intervene": {"type": "boolean"},
+    "instruction": {"type": ["string", "null"]}
+  },
+  "if": {
+    "properties": {"intervene": {"const": true}},
+    "required": ["intervene"]
+  },
+  "then": {
+    "properties": {
+      "instruction": {"type": "string", "minLength": 1, "pattern": "\\S"}
+    }
+  },
+  "else": {
+    "properties": {"instruction": {"type": "null"}}
+  }
+}
