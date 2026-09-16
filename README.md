@@ -6,6 +6,14 @@ See `setup.sh`.
 
 **NOTE**: Do NOT run `setup.sh` directly. Read the file, choose the configuration for your envirnoment, and execute the relevant commands manually.
 
+### Gemma 4 experiments
+
+See [GEMMA4.md](GEMMA4.md) for Gemma 4 E2B BF16 LoRA experiments targeting a single H100 80GB, using the original LLM-JEPA objective (`k=0`) and a standard LoRA baseline. Linux and Windows setup scripts and an optional local 4-bit check are included.
+
+### Situation/policy → intervention JSON
+
+See [HANDOFF.md](HANDOFF.md) for eight configurable training recipes, including direct JSON generation with an independent rationale JEPA objective. [Data format](docs/DATA_FORMAT.md), example JSONL/schema files, H100 settings, and a local compatibility check are included. Start with `python train_experiment.py --config configs/intervention_h100.json --prepare-only`; this validates/tokenizes without loading model weights. Synthetic examples demonstrate the pipeline and do not establish task performance.
+
 <a id="stp"></a>
 ## Semantic Tube Prediction
 

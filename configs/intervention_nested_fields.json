@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "experiment": {
+    "name": "intervention-nested-fields-smoke",
+    "recipe": "rationale_jepa"
+  },
+  "model": {
+    "model_name_or_path": "google/gemma-4-E2B-it",
+    "revision": "3e22461f65e89153144f8adb70e3b8c2cc9845a7",
+    "quantization": "4bit",
+    "cache_dir": "../.cache/huggingface",
+    "lora_rank": 16,
+    "lora_alpha": 32
+  },
+  "data": {
+    "train_file": "../examples/intervention_nested.jsonl",
+    "target_schema": "../examples/intervention_target.schema.json",
+    "fields": {
+      "id": "case.key",
+      "situation": "context.event",
+      "policy": "context.rule",
+      "rationale": "annotation.reason",
+      "target": "annotation.decision"
+    },
+    "max_length": 512,
+    "max_samples": 2
+  },
+  "prompts": {
+    "system": "Decide whether AI should intervene. Follow the supplied policy. Return only a JSON object with exactly two fields: intervene (a boolean) and instruction. When intervene is true, instruction must be a concise, nonempty action string. When intervene is false, instruction must be null. Output raw JSON with no Markdown fences or surrounding text. Begin with { and end with }."
+  },
+  "training": {
+    "output_dir": "../outputs/intervention-nested-fields-smoke",
+    "batch_size": 1,
+    "gradient_accumulation_steps": 1,
+    "max_steps": 2
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "experiment": {
+    "name": "intervention-rationale-jepa-h100",
+    "recipe": "rationale_jepa"
+  },
+  "model": {
+    "model_name_or_path": "google/gemma-4-E2B-it",
+    "revision": "3e22461f65e89153144f8adb70e3b8c2cc9845a7",
+    "dtype": "bfloat16",
+    "quantization": "none",
+    "cache_dir": "../.cache/huggingface",
+    "lora_rank": 64,
+    "lora_alpha": 128
+  },
+  "data": {
+    "train_file": "../examples/intervention_train.jsonl",
+    "eval_file": "../examples/intervention_eval.jsonl",
+    "target_schema": "../examples/intervention_target.schema.json",
+    "max_length": 1024
+  },
+  "prompts": {
+    "system": "Decide whether AI should intervene. Follow the supplied policy. Return only a JSON object with exactly two fields: intervene (a boolean) and instruction. When intervene is true, instruction must be a concise, nonempty action string. When intervene is false, instruction must be null. Output raw JSON with no Markdown fences or surrounding text. Begin with { and end with }."
+  },
+  "training": {
+    "output_dir": "../outputs/intervention-rationale-jepa-h100",
+    "batch_size": 4,
+    "gradient_accumulation_steps": 4
+  }
+}
