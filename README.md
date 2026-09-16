@@ -14,6 +14,8 @@ See [GEMMA4.md](GEMMA4.md) for Gemma 4 E2B BF16 LoRA experiments targeting a sin
 
 See [HANDOFF.md](HANDOFF.md) for eight configurable training recipes, including direct JSON generation with an independent rationale JEPA objective. [Data format](docs/DATA_FORMAT.md), example JSONL/schema files, H100 settings, and a local compatibility check are included. Start with `python train_experiment.py --config configs/intervention_h100.json --prepare-only`; this validates/tokenizes without loading model weights. Synthetic examples demonstrate the pipeline and do not establish task performance.
 
+For an existing SFT project with paired reason/no-reason JSONL files, see [the portable data preparation guide](docs/PAIRED_JEPA_DATA.md). It includes the preparation script and parser to copy into `scripts/` and `src/data/`.
+
 <a id="stp"></a>
 ## Semantic Tube Prediction
 
